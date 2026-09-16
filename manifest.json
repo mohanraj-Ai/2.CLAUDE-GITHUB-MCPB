@@ -1,0 +1,33 @@
+{
+  "manifest_version": "0.3",
+  "name": "github-mcp",
+  "display_name": "GitHub MCP",
+  "version": "1.0.0",
+  "description": "GitHub integration for Claude Desktop using the Model Context Protocol.",
+  "author": {
+    "name": "Mohanraj P"
+  },
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "node_modules/@modelcontextprotocol/server-github/dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/node_modules/@modelcontextprotocol/server-github/dist/index.js"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${user_config.github_token}"
+      }
+    }
+  },
+  "user_config": {
+    "github_token": {
+      "type": "string",
+      "title": "GitHub Personal Access Token",
+      "description": "GitHub Personal Access Token used by the GitHub MCP server.",
+      "sensitive": true,
+      "required": true
+    }
+  }
+}
